@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Drinks Catalogue</title>
+</head>
+<body>
+    <h1>Drinks Catalogue</h1>
+    {% for drink_type, drink_sizes in menu %}
+        <h2>{{ drink_type }}</h2>
+        <ul>
+        {% for size, price in drink_sizes %}
+            <li>{{ size }}: {{ price }}$</li>
+        {% endfor %}
+        </ul>
+    {% endfor %}
+</body>
+</html>

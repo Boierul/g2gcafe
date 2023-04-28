@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>G2G | Cafe</title>
+</head>
+<body>
+{#<h1>Drinks Catalogue</h1>#}
+{#{% for juice_type, drink_sizes in menu %}#}
+{#    <h2>{{ juice_type }}</h2>#}
+{#    <ul>#}
+{#        {% for size, price in drink_sizes %}#}
+{#            <li>{{ size }}: {{ price }}$</li>#}
+{#        {% endfor %}#}
+{#    </ul>#}
+{#{% endfor %}#}
+{#<br>#}
+
+<h1>Order Drink:</h1>
+<form method="POST">
+    {% csrf_token %}
+    <label for="drink_kind">Juice Type:</label>
+    <select name="drink_kind" id="drink_kind">
+        {% for drink_type, _ in menu %}
+            <option value="{{ drink_type }}">{{ drink_type }}</option>
+        {% endfor %}
+    </select>
+    <br>
+    <label for="drink_size">Juice Size:</label>
+    <select name="drink_size" id="drink_size">
+        <option value="Small">Small</option>
+        <option value="Medium">Medium</option>
+        <option value="Large">Large</option>
+    </select>
+    <br>
+    <label for="quantity">Quantity:</label>
+    <input type="number" name="quantity" id="quantity" min="1" max="10" required>
+    <br>
+    <input type="submit" value="Add to Order">
+</form>
+<br>
+{% if price %}
+    <h2>Total Price: {{ price }}$</h2>
+{% endif %}
+</body>
+</html>
